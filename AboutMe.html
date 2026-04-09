@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.css">
+<meta charset="UTF-8">
+<title>About Me</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #050510;
+    color: white;
+    overflow-x: hidden;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.parallax {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 70%);
+    z-index: -2;
+    transition: transform 0.1s linear;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #00f7ff;
+}
+
+.logo {
+    font-size: 24px;
+    color: #00f7ff;
+    text-shadow: 0 0 10px #00f7ff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    color: #00f7ff;
+}
+
+.sub-menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px 0;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid #00f7ff;
+}
+
+.sub-menu a {
+    text-decoration: none;
+    color: #aaa;
+    font-weight: bold;
+    position: relative;
+    transition: 0.3s;
+}
+
+.sub-menu a:hover {
+    color: #00f7ff;
+}
+
+.sub-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #00f7ff;
+    transition: 0.3s;
+}
+
+.sub-menu a:hover::after {
+    width: 100%;
+}
+
+#Latest {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.about-text {
+    flex: 1.1;
+}
+
+.about-text h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00f7ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-text p {
+    font-size: 20px;
+    line-height: 1.9;
+    color: #cccccc;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.about-image img {
+    width: 600px;
+    max-width: 100%;
+    border-radius: 25px;
+    transition: transform 0.2s ease;
+    box-shadow:
+        0 0 40px #00f7ff,
+        0 0 80px #ff00ff;
+}
+
+.birthday-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.calendar {
+    width: 400px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00f7ff;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px #00f7ff;
+    padding: 20px;
+}
+
+.calendar-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #00f7ff;
+    text-shadow: 0 0 10px #00f7ff;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.calendar-days div {
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.birthday-date {
+    background: linear-gradient(45deg, #00f7ff, #ff00ff);
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 20px #ff00ff;
+    transform: scale(1.1);
+}
+
+.sections section {
+    padding: 120px 10%;
+    border-top: 1px solid #111;
+}
+
+.sections h2 {
+    font-size: 35px;
+    color: #00f7ff;
+}
+
+@media (max-width: 1000px) {
+    .about {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+    }
+
+    .about-image img {
+        width: 400px;
+    }
+}
+
+img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+</style>
+</head>
+
+<body>
+    <script src="bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.js"> </script>
+
+<canvas id="particles"></canvas>
+<div class="parallax"></div>
+
+<header>
+    <div class="logo">My Portfolio</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AboutMe.html">AboutMe</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="sub-menu">
+    <a href="#Latest">Latest Updates</a>
+    <a href="#Birthday">Birthday</a>
+    <a href="#Educational">Educational Background</a>
+    <a href="#Skills">Skills</a>
+</div>
+
+<div class="sections">
+
+<section id="Latest">
+    <div class="about">
+        <div class="about-text">
+            <h1>Who Am I</h1>
+            <p style="text-align: justify;">
+                I’m someone who loves adventure and feels alive when I’m playing sports, riding motorcycles or checking out cars. Life on a farm surrounded by animals keeps me grounded and connected to nature. I’m humble, but I take pride in being a pure-blooded Igorot with a touch of Chinese heritage. Learning new skills excites me and I believe real growth comes from doing, not just reading. I enjoy experiences more than knowledge on paper because they shape who I am. I’m curious about the world and always looking for new challenges to push myself. I try to stay true to my roots while exploring everything life has to offer. I value simplicity, honesty and moments that make life feel meaningful. I love the balance between thrill and peace fast rides and quiet farm mornings. At the core, I live curious, stay real and strive to make every moment count.
+            </p>
+        </div>
+
+        <div class="about-image">
+            <img src="pic1.jpg" alt="My Photo" id="tiltImg">
+        </div>
+    </div>
+</section>
+
+<section id="Birthday">
+    <h2>Birthday</h2>
+
+    <div class="birthday-container">
+        <div class="calendar">
+            <div class="calendar-header">April 2005</div>
+
+            <div class="calendar-days">
+                <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+                <div>Thu</div><div>Fri</div><div>Sat</div>
+
+                <div></div><div></div><div></div><div></div><div></div>
+                <div>1</div><div>2</div>
+                <div>3</div><div>4</div><div>5</div><div>6</div>
+                <div class="birthday-date">7</div>
+                <div>8</div><div>9</div><div>10</div><div>11</div>
+                <div>12</div><div>13</div><div>14</div>
+                <div>15</div><div>16</div><div>17</div>
+                <div>18</div><div>19</div><div>20</div><div>21</div>
+                <div>22</div><div>23</div><div>24</div>
+                <div>25</div><div>26</div><div>27</div>
+                <div>28</div><div>29</div><div>30</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="Educational">
+    <h2>Educational Background</h2>
+     <div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        
+      
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                 <a href="ELEM.html" target="_blank">
+                <img src="Elem.png" class="d-block w-100" alt="College">
+                <div class="carousel-caption">
+                    <h3>(2008-2014)</h3>
+                </a>
+                   
+                </div>
+            </div>
+    <div class="carousel-item">
+                 <a href="SEC.html" target="_blank">
+                <img src="Secondary.png" class="d-block w-100" alt="Elementary">
+                <div class="carousel-caption">
+                    <h3>(2014-2020)</h3>
+                </a>
+                    
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                 <a href="COLLEGE.html" target="_blank">
+                <img src="college.webp" class="d-block w-100" alt="Photo">
+                <div class="carousel-caption">
+                    <h3>(2024-Present)</h3>
+                </a>
+                </div>
+            </div>
+        </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+</section>
+
+<section id="Skills">
+    
+    <h2>Skills</h2>
+<style>
+body {
+    background: #0f2027;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    font-family: Tahoma;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    background: #0d7377;
+}
+
+.nav-link {
+    color: lightgray !important;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: cyan !important;
+}
+
+.section-title {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.card {
+    background: #1b2a30;
+    color: white;
+    transition: all 0.3s;
+    border-radius: 15px;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,255,255,0.2);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.progress {
+    height: 10px;
+    background: #2c3e50;
+}
+
+.progress-bar {
+    background: cyan;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container mt-5" id="skills">
+
+  <div class="row g-4">
+
+    <div class="col-md-4 fade-in">
+      <div class="card">
+        <img src="Skill1.jpg">
+        <div class="card-body">
+          <h5><i class="bi bi-filetype-html"></i>Cooking</h5>
+          <p class="text-justify">I can cook simple and delicious meals.</p>
+          <div class="progress">
+            <div class="progress-bar" style="width:90%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 fade-in">
+      <div class="card">
+        <img src="Skill2.jpg">
+        <div class="card-body">
+          <h5><i class="bi bi-palette"></i>Playing Sports</h5>
+          <p class="text-justify">I enjoy playing and staying active.</p>
+          <div class="progress">
+            <div class="progress-bar" style="width:85%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 fade-in">
+      <div class="card">
+        <img src="Skill3.jpg">
+        <div class="card-body">
+          <h5><i class="bi bi-bootstrap"></i>Time Management</h5>
+          <p class="text-justify">I use my time wisely.</p>
+          <div class="progress">
+            <div class="progress-bar" style="width:80%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 fade-in">
+      <div class="card">
+        <img src="Skill4.jpg">
+        <div class="card-body">
+          <h5><i class="bi bi-code-slash"></i>Communication</h5>
+          <p class="text-justify">I ca share my ideas clearly.</p>
+          <div class="progress">
+            <div class="progress-bar" style="width:70%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 fade-in">
+      <div class="card">
+        <img src="Skill5.jpg">
+        <div class="card-body">
+          <h5><i class="bi bi-database"></i>Teamwork</h5>
+          <p class="text-justify">I work well with others.</p>
+          <div class="progress">
+            <div class="progress-bar" style="width:75%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll("div[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) {
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+</body>
+</section>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for (let i = 0; i < 120; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        dx: (Math.random() - 0.5),
+        dy: (Math.random() - 0.5)
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#00f7ff";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+document.addEventListener("mousemove", e=>{
+    const trail=document.createElement("div");
+    trail.style.position="fixed";
+    trail.style.width="8px";
+    trail.style.height="8px";
+    trail.style.background="#00f7ff";
+    trail.style.borderRadius="50%";
+    trail.style.left=e.clientX+"px";
+    trail.style.top=e.clientY+"px";
+    trail.style.pointerEvents="none";
+    trail.style.boxShadow="0 0 15px #00f7ff, 0 0 30px #ff00ff";
+    document.body.appendChild(trail);
+    setTimeout(()=>trail.remove(),300);
+});
+
+window.addEventListener("scroll",()=>{
+    document.querySelector(".parallax").style.transform =
+        "translateY("+window.scrollY*0.3+"px)";
+});
+
+const img=document.getElementById("tiltImg");
+img.addEventListener("mousemove",(e)=>{
+    const rect=img.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+    const rotateX=-(y-rect.height/2)/20;
+    const rotateY=(x-rect.width/2)/20;
+    img.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+img.addEventListener("mouseleave",()=>{
+    img.style.transform="rotateX(0) rotateY(0)";
+});
+
+</script>
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 120; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        dx: (Math.random() - 0.5),
+        dy: (Math.random() - 0.5)
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#00f7ff";
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>

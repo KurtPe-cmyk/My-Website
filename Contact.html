@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #000c0f, #001f24);
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        h2 {
+            color: #00e5ff;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(0, 172, 193, 0.12);
+            border: 1px solid #00acc1;
+            box-shadow: 0 0 20px rgba(0,255,255,0.2);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: auto;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 30px rgba(0,255,255,0.6);
+            transform: translateY(-5px);
+        }
+
+        .info p {
+            margin: 12px 0;
+        }
+
+        .info i {
+            color: #00e5ff;
+            margin-right: 10px;
+        }
+
+        form {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea {
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 6px;
+            background: #012a30;
+            color: white;
+        }
+
+        input:focus, textarea:focus {
+            box-shadow: 0 0 10px #00e5ff;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #00acc1;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00e5ff;
+            box-shadow: 0 0 15px #00e5ff;
+        }
+
+        .success {
+            display: none;
+            color: #00e676;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">My Portfolio</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AboutMe.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="section">
+    <h2>Contact Me</h2>
+
+    <div class="card">
+        <div class="info">
+            <p><i class="fas fa-envelope"></i>Email: wennardkurt@gmail.com</p>
+            <p><i class="fas fa-user"></i>Facebook: Adiwang, Wennard Kurt Pe</p>
+            <p><i class="fas fa-phone"></i>Phone: 0962-951-5259</p>
+            <p><i class="fas fa-map-marker-alt"></i>Address: Sta.Maria, Alfonso Lista, Ifugao</p>
+        </div>
+
+        <form id="contact-form">
+            <input type="text" name="user_name" placeholder="Your Name" required>
+            <input type="email" name="user_email" placeholder="Your Email" required>
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+            <p class="success" id="success-msg">Message sent successfully!</p>
+        </form>
+    </div>
+
+</section>
+
+<footer>
+    <p>wennardkurt@gmail.com</p>
+</footer>
+
+<script>
+(function(){
+    emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+    .then(function() {
+        document.getElementById("success-msg").style.display = "block";
+    }, function(error) {
+        alert("Failed to send message");
+    });
+});
+</script>
+
+</body>
+</html>
