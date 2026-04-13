@@ -7,13 +7,52 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background: linear-gradient(to right, #000c0f, #001f24);
+            font-family: Tahoma;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #00151a;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: #00e5ff;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 5px 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
         }
 
         .section {
-            padding: 80px 20px;
+            padding: 60px 15px;
+            text-align: center;
         }
 
         h2 {
@@ -25,8 +64,9 @@
             background: rgba(0, 172, 193, 0.12);
             border: 1px solid #00acc1;
             box-shadow: 0 0 20px rgba(0,255,255,0.2);
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
+            width: 100%;
             max-width: 500px;
             margin: auto;
             transition: 0.3s;
@@ -37,8 +77,14 @@
             transform: translateY(-5px);
         }
 
+        .info {
+            text-align: left;
+        }
+
         .info p {
-            margin: 12px 0;
+            margin: 10px 0;
+            font-size: 14px;
+            word-wrap: break-word;
         }
 
         .info i {
@@ -47,21 +93,23 @@
         }
 
         form {
-            margin-top: 25px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
         }
 
         input, textarea {
             padding: 10px;
-            margin: 8px 0;
+            margin: 6px 0;
             border: none;
             border-radius: 6px;
             background: #012a30;
             color: white;
+            width: 100%;
         }
 
         input:focus, textarea:focus {
+            outline: none;
             box-shadow: 0 0 10px #00e5ff;
         }
 
@@ -85,6 +133,37 @@
             display: none;
             color: #00e676;
             margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: white;
+            font-size: 14px;
+        }
+
+        @media (max-width: 576px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -121,7 +200,6 @@
             <p class="success" id="success-msg">Message sent successfully!</p>
         </form>
     </div>
-
 </section>
 
 <footer>
